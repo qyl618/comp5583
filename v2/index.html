@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Qu Yaolin — MSc student at The Hong Kong Polytechnic University</title>
+  <meta name="description" content="Personal website of Qu Yaolin, MSc student at The Hong Kong Polytechnic University.">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="site-brand" href="#home">Qu Yaolin</a>
+
+      <nav class="site-nav" aria-label="Primary">
+        <ul class="site-nav__list" role="list">
+          <li><a class="site-nav__link" href="#home" aria-current="location">Home</a></li>
+          <li><a class="site-nav__link" href="#about">About</a></li>
+          <li><a class="site-nav__link" href="#projects">Projects</a></li>
+          <li><a class="site-nav__link" href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="false">
+        Dark mode
+      </button>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <section class="hero" id="home" aria-labelledby="home-title">
+      <div class="container">
+        <h1 id="home-title">Qu Yaolin</h1>
+        <p class="hero__tagline">MSc student at The Hong Kong Polytechnic University.</p>
+        <p class="hero__intro">
+          I completed my Bachelor of Engineering at Taiyuan University of Technology
+          (2021–2025) and am currently studying at The Hong Kong Polytechnic University.
+          My projects include a face recognition system and an undergraduate thesis on
+          convolutional neural networks for medical image classification. I enjoy
+          basketball and music.
+        </p>
+
+        <nav class="home-nav" aria-label="Page sections">
+          <ul class="home-nav__list" role="list">
+            <li><a class="home-nav__link" href="#about">About</a></li>
+            <li><a class="home-nav__link" href="#projects">Projects</a></li>
+            <li><a class="home-nav__link" href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </section>
+
+    <section class="section about" id="about" aria-labelledby="about-title">
+      <div class="container">
+        <h2 id="about-title">About</h2>
+
+        <div class="about__grid">
+          <div class="about__block">
+            <h3>Education</h3>
+            <p class="about__degree">Bachelor of Engineering</p>
+            <p class="about__school">Taiyuan University of Technology, 2021–2025</p>
+            <p class="about__current">Currently studying at The Hong Kong Polytechnic University.</p>
+          </div>
+
+          <div class="about__block">
+            <h3>Interests</h3>
+            <ul class="interest-list" role="list">
+              <li>Basketball</li>
+              <li>Music</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section projects" id="projects" aria-labelledby="projects-title">
+      <div class="container">
+        <h2 id="projects-title">Projects</h2>
+
+        <div class="project-list">
+          <article class="project">
+            <h3 class="project__title">Simple Face Recognition System</h3>
+
+            <p class="project__purpose">
+              <span class="label">Purpose</span>
+              A small Python tool that takes a photo and tells you which of a few enrolled
+              people it contains, and answers "unknown" when the face belongs to nobody it
+              has been enrolled on.
+            </p>
+
+            <dl class="project__meta">
+              <div class="project__meta-group">
+                <dt>Stack</dt>
+                <dd>Python, OpenCV, NumPy.</dd>
+              </div>
+              <div class="project__meta-group">
+                <dt>Outcome</dt>
+                <dd>
+                  Recognises enrolled people from a still image on CPU; the rejection
+                  threshold was tuned on a small self-collected set so that unknown faces
+                  are declined rather than mislabelled.
+                </dd>
+              </div>
+            </dl>
+
+            <details class="project__details">
+              <summary>What I did</summary>
+              <ul class="project__contributions">
+                <li>
+                  Built the whole pipeline myself: image capture, face detection, face
+                  encoding, distance-based matching, and rendering of labelled bounding
+                  boxes.
+                </li>
+                <li>
+                  Used OpenCV for capture and detection, and a compact face embedding per
+                  detected face; matching is nearest-neighbour over the enrolled embeddings
+                  with a distance threshold, so unenrolled faces are rejected instead of
+                  being forced onto the closest identity.
+                </li>
+                <li>
+                  Added an enrolment step that appends each new person's embeddings to a
+                  small JSON store, so new people are added without retraining anything.
+                </li>
+                <li>
+                  Kept the implementation in plain Python with NumPy and OpenCV and no
+                  training loop, so the whole thing runs on a laptop CPU.
+                </li>
+              </ul>
+            </details>
+          </article>
+
+          <article class="project">
+            <h3 class="project__title">
+              Convolutional Neural Networks for Medical Image Classification
+              <span class="project__note">(undergraduate thesis)</span>
+            </h3>
+
+            <p class="project__purpose">
+              <span class="label">Purpose</span>
+              My bachelor's thesis at Taiyuan University of Technology — testing whether
+              lightweight convolutional networks can classify medical images reliably when
+              only a small labelled dataset is available.
+            </p>
+
+            <dl class="project__meta">
+              <div class="project__meta-group">
+                <dt>Stack</dt>
+                <dd>Python, PyTorch.</dd>
+              </div>
+              <div class="project__meta-group">
+                <dt>Outcome</dt>
+                <dd>
+                  Both models passed 80% validation accuracy; the two-model fusion and the
+                  localisation study were the main findings reported in the thesis.
+                </dd>
+              </div>
+            </dl>
+
+            <details class="project__details">
+              <summary>What I did</summary>
+              <ul class="project__contributions">
+                <li>
+                  Implemented and compared two lightweight backbones, MobileNetV3 and
+                  ResNet-18, inside one training harness so that the comparison was
+                  like-for-like.
+                </li>
+                <li>
+                  Rebuilt the MobileNetV3 classification head with a 512-unit hidden layer,
+                  Hardswish activation and Dropout, to suit a small number of classes.
+                </li>
+                <li>
+                  Wrote the training and evaluation loop in PyTorch with AdamW at a 3e-4
+                  learning rate and a StepLR schedule over 15 epochs, logging training
+                  loss, validation loss and accuracy every epoch; training ran on GPU.
+                </li>
+                <li>
+                  Countered the small-sample regime with augmentation (random horizontal
+                  flip plus stronger transforms) and kept the class set identical across
+                  the training and validation splits.
+                </li>
+                <li>
+                  Fused the two models at the end so that their errors would not coincide,
+                  and studied a random-localisation crop that pushes the network towards
+                  lesion regions instead of background texture.
+                </li>
+              </ul>
+            </details>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact" id="contact" aria-labelledby="contact-title">
+      <div class="container">
+        <h2 id="contact-title">Contact</h2>
+        <p class="contact__email">
+          <a href="mailto:835886046@qq.com">835886046@qq.com</a>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Qu Yaolin</p>
+    </div>
+  </footer>
+</body>
+</html>
